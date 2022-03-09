@@ -29,7 +29,7 @@ const client = new Client({
     dataPath: ".wwebjs_auth"
 }),
 puppeteer: { 
-      headless: false,
+      headless: true,
       args: [
         '--no-sandbox',
         '--disable-setuid-sandbox',
@@ -238,7 +238,7 @@ app.use('/sendMessages', async (req, res, next) => {
 });
 
 
-const port = process.env.PORT || 8001;
+const port = process.env.PORT || 8000;
 app.listen(port, () => {
   console.log('whatsapp webapp listening on port !'+port);
 });
