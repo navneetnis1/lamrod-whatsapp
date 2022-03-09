@@ -1,0 +1,23 @@
+2022/03/10-00:21:16.469 11d03 Reusing MANIFEST /Users/navi/Documents/websites/whatsapp/nv-whatsapp/.wwebjs_auth/session-example/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2022/03/10-00:21:16.470 11d03 Recovering log #227
+2022/03/10-00:21:16.856 11d03 Reusing old log /Users/navi/Documents/websites/whatsapp/nv-whatsapp/.wwebjs_auth/session-example/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000227.log 
+2022/03/10-00:21:16.860 11d03 Delete type=2 #229
+2022/03/10-00:21:16.860 11d03 Delete type=2 #187
+2022/03/10-00:21:18.192 e203 Level-0 table #233: started
+2022/03/10-00:21:18.264 e203 Level-0 table #233: 1015862 bytes OK
+2022/03/10-00:21:18.292 e203 Delete type=0 #227
+2022/03/10-00:21:28.984 11d03 Compacting 1@1 + 1@2 files
+2022/03/10-00:21:29.247 11d03 Generated table #234@1: 26889 keys, 1721565 bytes
+2022/03/10-00:21:29.247 11d03 Compacted 1@1 + 1@2 files => 1721565 bytes
+2022/03/10-00:21:29.277 11d03 compacted to: files[ 0 0 1 0 0 0 0 ]
+2022/03/10-00:21:29.278 11d03 Delete type=2 #230
+2022/03/10-00:21:29.278 11d03 Delete type=2 #233
+2022/03/10-00:22:57.212 e203 Level-0 table #236: started
+2022/03/10-00:22:57.282 e203 Level-0 table #236: 1125950 bytes OK
+2022/03/10-00:22:57.303 e203 Delete type=0 #232
+2022/03/10-00:22:57.319 e203 Compacting 1@1 + 1@2 files
+2022/03/10-00:22:57.583 e203 Generated table #237@1: 39554 keys, 2178513 bytes
+2022/03/10-00:22:57.583 e203 Compacted 1@1 + 1@2 files => 2178513 bytes
+2022/03/10-00:22:57.608 e203 compacted to: files[ 0 0 1 0 0 0 0 ]
+2022/03/10-00:22:57.609 e203 Delete type=2 #236
+2022/03/10-00:22:57.609 e203 Delete type=2 #234
