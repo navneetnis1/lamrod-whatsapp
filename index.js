@@ -9,33 +9,21 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //comment start//
-// const client = new Client({
-//   authStrategy: new LocalAuth({
-//     clientId: "example",
-//     dataPath: ".wwebjs_auth"
-// }),
-//   puppeteer: {
-//     headless: false,
-//     args: [
-//       '--no-sandbox',
-//       '--disable-setuid-sandbox',
-//       '--unhandled-rejections=strict'
-//   ]},
-// });
-
 const client = new Client({
   authStrategy: new LocalAuth({
     clientId: "example",
     dataPath: ".wwebjs_auth"
 }),
-puppeteer: { 
-      headless: true,
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--unhandled-rejections=strict'
-    ]},
+  puppeteer: {
+    headless: false,
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--unhandled-rejections=strict'
+  ]},
 });
+
+
 
 client.on('qr', qr => {
   console.log(qr);
@@ -83,33 +71,20 @@ client.initialize();
 
 
 function sendMessage(number, message) {
-    // const session = process.env.LWA_SESSION_STRING;
-    // if (!session) return console.log('session unavailable');
+    
 
-    // const jsonobject = JSON.parse(session);
-    // console.log(jsonobject);
-
-    //Session code starts
-
-    //9649150004 online object
-    const jsonobject = {
-      WABrowserId: '"cV0/2QitEDabVdrCe6C3aQ=="',
-      WASecretBundle: '{"key":"6Ts0Ej/H+zr4/AT5dp7Xs6Ly2YUjV2Q/cWEBAPFzQCg=","encKey":"XF5hVudfpxb5j8hhxv5YG5xGD8FaZFg3Pk6EDDNIdQQ=","macKey":"6Ts0Ej/H+zr4/AT5dp7Xs6Ly2YUjV2Q/cWEBAPFzQCg="}',
-      WAToken1: '"nR4/j6NDw1fsRMMzdyfWzJsOqx2n91YbaMocOMU7n0M="',
-      WAToken2: '"1@lg5fJy1B5kKZtHooA8pjYNjc3YNDKD22+FhGrwH9uGRP/W64Rr+I9Ydub37Mrlr7MIQ3aWNyHqRFqA=="'
-      };
-
-
-// session code ends
     const client = new Client({
-      session: jsonobject,
-      puppeteer: {
-        headless: true,
-        args: [
-          '--no-sandbox',
-          '--disable-setuid-sandbox',
-          '--unhandled-rejections=strict'
-      ]},
+      authStrategy: new LocalAuth({
+        clientId: "example",
+        dataPath: ".wwebjs_auth"
+    }),
+    puppeteer: { 
+          headless: true,
+          args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--unhandled-rejections=strict'
+        ]},
     });
 
     client.on('ready', () => {
@@ -135,46 +110,19 @@ const sendMessages = async (messages) => {
   console.log('I can send These messages = ', messages);
 
 
-  //session code starts
-
-  //9649150004 online object
-  const jsonobject = {
-    WABrowserId: '"cV0/2QitEDabVdrCe6C3aQ=="',
-    WASecretBundle: '{"key":"6Ts0Ej/H+zr4/AT5dp7Xs6Ly2YUjV2Q/cWEBAPFzQCg=","encKey":"XF5hVudfpxb5j8hhxv5YG5xGD8FaZFg3Pk6EDDNIdQQ=","macKey":"6Ts0Ej/H+zr4/AT5dp7Xs6Ly2YUjV2Q/cWEBAPFzQCg="}',
-    WAToken1: '"nR4/j6NDw1fsRMMzdyfWzJsOqx2n91YbaMocOMU7n0M="',
-    WAToken2: '"1@lg5fJy1B5kKZtHooA8pjYNjc3YNDKD22+FhGrwH9uGRP/W64Rr+I9Ydub37Mrlr7MIQ3aWNyHqRFqA=="'
-    };
-  // session code ends
-
-
-  // // // offline session
-  // const jsonobject = {
-  //   WABrowserId: '"fzJzrXWwscZ5YMukE90zlg=="',
-  //   WASecretBundle: '{"key":"nsQAd3lvio+zieEJlbpU600WnzsUzdN9cU7ATaZYcX8=","encKey":"jDWcSJXippKCUJtPEYHcpEpEtpHiVxcRBmO7UkYqvcA=","macKey":"nsQAd3lvio+zieEJlbpU600WnzsUzdN9cU7ATaZYcX8="}',
-  //   WAToken1: '"YGjdb2JFuxXQEqG2ZLkwjUpTr6AsOd5664F+Le3GUABbhXLhcI9eOQN9fJIU8D7cx5zGFV0Q8RSTu9MMxmC+pQ=="',
-  //   WAToken2: '"1@vQr/W/lXtAhL5m2OX34/vHgBNv8oMEiQSuEUf5zbZ3jq8/dsCaVSdpG+aFfARDkFceHvSfyrFwAK5Q=="'
-  // };
-  // // // offline session
-  
-var sessionObject = {
-  WABrowserId: '"UjUK8c4ROqEDPoBnJb8hqw=="',
-  WASecretBundle: '{"key":"96hS/gbazjdf+UreE0RbpbhAw4Z5wkBEMskIj87X87Y=","encKey":"mnQG8ADUMZ6kO/itWFFqm0EITUvLDiBpAM3Ssk31E28=","macKey":"96hS/gbazjdf+UreE0RbpbhAw4Z5wkBEMskIj87X87Y="}',
-  WAToken1: '"paH/NJ/8VKcpOizxNZsSjmAoTR6jQ9Uqqrcye8fW6Nk="',
-  WAToken2: '"1@9L7K778ZMZ39go1RNgs/aFMOykIsUzTf8GdYS07GtDNEyp5bKhxHgr11IGKOCO+yFRPHAiB2E3O/Rg=="'
-};
   const client = new Client({
-    authStrategy: new LegacySessionAuth({
-      
-        session: sessionObject,
-        // puppeteer: {
-        //   headless: true,
-        //   args: [
-        //     '--no-sandbox',
-        //     '--disable-setuid-sandbox',
-        //     '--unhandled-rejections=strict'
-        // ]}, // saved session object
-    })
-});
+    authStrategy: new LocalAuth({
+      clientId: "example",
+      dataPath: ".wwebjs_auth"
+  }),
+  puppeteer: { 
+        headless: false,
+        args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          '--unhandled-rejections=strict'
+      ]},
+  });
 
   client.initialize().catch(_ => _);
 
@@ -225,7 +173,7 @@ app.use('/sendMessage', async (req, res, next) => {
   console.log('i will send message');
   const number = req.query.number;
   const message = req.query.message;
- 
+ console.log(number);
   sendMessage(number, message);
   return res.json({ sent: true });
 });
@@ -238,7 +186,7 @@ app.use('/sendMessages', async (req, res, next) => {
 });
 
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8003;
 app.listen(port, () => {
   console.log('whatsapp webapp listening on port !'+port);
 });
