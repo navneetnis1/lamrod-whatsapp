@@ -25,6 +25,9 @@ const client = new Client({
 
 
 
+
+
+
 client.on('qr', qr => {
   console.log(qr);
   qrcode.generate(qr, {large: true});
@@ -99,10 +102,6 @@ function sendMessage(number, message) {
 
     client.initialize();
 }
-
-
-
-
 
 
 
