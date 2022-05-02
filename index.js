@@ -8,14 +8,16 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+
 //comment start//
 const client = new Client({
   authStrategy: new LocalAuth({
-    clientId: "example",
+    clientId: "Testing",
     dataPath: ".wwebjs_auth"
 }),
   puppeteer: {
-    headless: true,
+    headless: false,
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox',
@@ -23,35 +25,22 @@ const client = new Client({
   ]},
 });
 
-
-
-
-
-
 client.on('qr', qr => {
   console.log(qr);
   qrcode.generate(qr, {large: true});
 });
 
-client.on('authenticated', (object) => {
-  console.log('AUTHENTICATED');
-  
-});
 
-client.on('auth_failure', msg => {
-  // Fired if session restore was unsuccessful
-  console.error('AUTHENTICATION FAILURE', msg);
-});
 
 
 
 client.on('ready', () => {
-    console.log('Client is ready!');
-    const number = "919610417000";
+  console.log('Client is ready!');
+  const number = "919610417000";
     console.log('sending....');
 
     // Your message.
-    const text = "hello new";
+    const text = "hello";
 
     // Getting chatId from the number.
     // we have to delete "+" from the beginning and add "@c.us" at the end of the number.
@@ -59,36 +48,32 @@ client.on('ready', () => {
 
     // Sending message.
     client.sendMessage(chatId, text);
+    console.log('Message sent');
+    //setTimeout(() => client.destroy(), 10000);
+    console.log('Client Destroyed');
 });
-
 
 client.initialize();
 
 //comment end
 
 
-
-
-
-
-
-
 function sendMessage(number, message) {
-    
 
-    const client = new Client({
-      authStrategy: new LocalAuth({
-        clientId: "example",
-        dataPath: ".wwebjs_auth"
-    }),
-    puppeteer: { 
-          headless: true,
-          args: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox',
-            '--unhandled-rejections=strict'
-        ]},
-    });
+  const client = new Client({
+    authStrategy: new LocalAuth({
+           clientId: "Testing",
+           dataPath: ".wwebjs_auth"
+       }),
+       puppeteer: { 
+               headless: false,
+               args: [
+                 '--no-sandbox',
+                 '--disable-setuid-sandbox',
+                 '--unhandled-rejections=strict'
+            ]},
+  });
+
 
     client.on('ready', () => {
       console.log('Im Ready now');
@@ -103,29 +88,41 @@ function sendMessage(number, message) {
     client.initialize();
 }
 
-
-
 const sendMessages = async (messages) => {
   console.log('I can send These messages = ', messages);
 
 
+  // const client = new Client({
+  //   authStrategy: new LocalAuth({
+  //     clientId: "example",
+  //     dataPath: ".wwebjs_auth"
+  // }),
+  // puppeteer: { 
+  //       headless: false,
+  //       args: [
+  //         '--no-sandbox',
+  //         '--disable-setuid-sandbox',
+  //         '--unhandled-rejections=strict'
+  //     ]},
+  // });
+
   const client = new Client({
     authStrategy: new LocalAuth({
-      clientId: "example",
-      dataPath: ".wwebjs_auth"
-  }),
-  puppeteer: { 
-        headless: false,
-        args: [
-          '--no-sandbox',
-          '--disable-setuid-sandbox',
-          '--unhandled-rejections=strict'
-      ]},
+           clientId: "Testing",
+           dataPath: ".wwebjs_auth"
+       }),
+       puppeteer: { 
+               headless: false,
+               args: [
+                 '--no-sandbox',
+                 '--disable-setuid-sandbox',
+                 '--unhandled-rejections=strict'
+            ]},
   });
 
-  client.initialize().catch(_ => _);
+  // client.initialize().catch(_ => _);
 
-  client.on('disconnected', () => console.log('I am disconnected'))
+  
   client.on('ready', async () => {
 
     console.log('im ready Now');
@@ -149,11 +146,12 @@ const sendMessages = async (messages) => {
     for (const message of messages) promises.push(await asyncSubProcessing(message));
     await Promise.all(promises);
     
-    //setTimeout(() => client.destroy(), 1000);
+    setTimeout(() => client.destroy(), 1000);
     client.destroy();
 
     return console.log('sent');
   });
+  client.initialize();
 }
 
 
@@ -172,12 +170,12 @@ app.use('/sendMessage', async (req, res, next) => {
   console.log('i will send message');
   const number = req.query.number;
   const message = req.query.message;
- console.log(number);
+  console.log(number);
   sendMessage(number, message);
   return res.json({ sent: true });
 });
 
-app.use('/sendMessages', async (req, res, next) => {
+app.use('/', async (req, res, next) => {
   console.log('i will send message');
   const messages = req.body;
   sendMessages(messages);
@@ -185,7 +183,7 @@ app.use('/sendMessages', async (req, res, next) => {
 });
 
 
-const port = process.env.PORT || 8003;
+const port = process.env.PORT || 8004;
 app.listen(port, () => {
   console.log('whatsapp webapp listening on port !'+port);
 });
